@@ -1,41 +1,63 @@
-import { FaImage, FaVideo, FaPen } from "react-icons/fa";
+import { useState } from "react";
+import { FaThumbsUp, FaComment, FaShare, FaUserCircle } from "react-icons/fa";
 
 const Feed = () => {
   return (
-    <div className="w-1/2 bg-white rounded-lg shadow-md p-4">
-      {/* Post Creation Box */}
-      <div className="border-b pb-4">
-        <input
-          type="text"
-          placeholder="Start a post..."
-          className="w-full p-2 border rounded-md"
-        />
-        <div className="flex justify-around mt-2 text-gray-600">
-          <div className="flex items-center gap-1 cursor-pointer hover:text-blue-600">
-            <FaImage /> Photo
-          </div>
-          <div className="flex items-center gap-1 cursor-pointer hover:text-blue-600">
-            <FaVideo /> Video
-          </div>
-          <div className="flex items-center gap-1 cursor-pointer hover:text-blue-600">
-            <FaPen /> Write Article
-          </div>
+    <div className="w-full bg-white rounded-lg shadow-md p-4">
+      {/* Post List */}
+      <div className="mt-4 space-y-6">
+        <PostCard />
+        <PostCard />
+        <PostCard />
+        
+      </div>
+    </div>
+  );
+};
+
+// Basic Post Structure
+const PostCard = () => {
+  const [showComments, setShowComments] = useState(false);
+
+  return (
+    <div className="border p-4 rounded-md shadow-sm">
+      {/* User Info */}
+      <div className="flex items-center gap-3">
+        <FaUserCircle className="text-gray-400 text-4xl" />
+        <div>
+          <h3 className="font-semibold">User Name</h3>
+          <p className="text-gray-600 text-sm">User Role</p>
         </div>
       </div>
 
-      {/* Posts */}
-      <div className="mt-4">
-        <div className="border p-4 rounded-md shadow-sm">
-          <h3 className="font-semibold">John Doe</h3>
-          <p className="text-gray-600 text-sm">Software Engineer at Google</p>
-          <p className="mt-2">Excited to share my latest project! 🚀</p>
-          <img src="https://via.placeholder.com/500x300" alt="Post" className="mt-2 rounded-md" />
-          <div className="flex justify-between text-gray-600 text-sm mt-2">
-            <span>👍 124</span>
-            <span>💬 45</span>
-          </div>
-        </div>
+      {/* Post Description */}
+      <p className="mt-2">Post description goes here...</p>
+
+      {/* Post Image */}
+      <img src="https://via.placeholder.com/500x300" alt="Post" className="mt-2 rounded-md" />
+
+      {/* Like, Comment, Share */}
+      <div className="flex justify-around text-gray-600 text-sm mt-3 border-t pt-2">
+        <button className="flex items-center gap-1 hover:text-blue-600">
+          <FaThumbsUp /> Like
+        </button>
+        <button
+          className="flex items-center gap-1 hover:text-blue-600"
+          onClick={() => setShowComments(!showComments)}
+        >
+          <FaComment /> Comments
+        </button>
+        <button className="flex items-center gap-1 hover:text-blue-600">
+          <FaShare /> Share
+        </button>
       </div>
+
+      {/* Expandable Comments Section */}
+      {showComments && (
+        <div className="mt-2 border-t pt-2">
+          <p className="text-sm text-gray-700">Recent comments...</p>
+        </div>
+      )}
     </div>
   );
 };

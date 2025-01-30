@@ -1,15 +1,14 @@
-import {  FaHome, FaBriefcase, FaCommentDots, FaBell, FaSearch } from "react-icons/fa";
+import { FaHome, FaBriefcase, FaCommentDots, FaBell, FaSearch, FaUserCircle } from "react-icons/fa";
 import { IoPeopleSharp } from "react-icons/io5";
-import { HiDotsHorizontal } from "react-icons/hi";
 import { MdApps } from "react-icons/md";
-import linkedinLogo from '../assets/images/linkedin-48.png'
+import linkedinLogo from "../assets/images/linkedin-48.png";
 
 const Navbar = () => {
   return (
     <nav className="flex items-center justify-between px-4 py-2 bg-white border-b shadow-sm">
       {/* Left - LinkedIn Logo */}
       <div className="flex items-center space-x-2">
-        <img src={linkedinLogo} alt="" />
+        <img src={linkedinLogo} alt="LinkedIn" className="h-8" />
       </div>
 
       {/* Center - Search Bar */}
@@ -43,10 +42,12 @@ const Navbar = () => {
         <div className="flex flex-col items-center relative">
           <FaBell className="text-xl" />
           <span className="text-xs font-semibold">Notifications</span>
-          <span className="absolute top-0 right-0 bg-red-600 text-white text-xs rounded-full px-1">1</span>
+          <span className="absolute top-0 right-0 bg-red-600 text-white text-xs rounded-full px-1">
+            1
+          </span>
         </div>
         <div className="flex flex-col items-center">
-          <HiDotsHorizontal className="text-xl" />
+          <FaUserCircle className="text-xl" />
           <span className="text-xs font-semibold">Me</span>
         </div>
         <div className="flex flex-col items-center">
