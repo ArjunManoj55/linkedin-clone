@@ -1,24 +1,11 @@
-import { useState } from 'react';
-
-
-const LoginForm = () => {
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
-
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    // Handle login logic here (e.g., API call)
-    console.log('Login:', { email, password });
-  };
-
+const LoginForm = ({ email, password, setEmail, setPassword, handleSubmit }) => {
   return (
     <div className="bg-white p-8 rounded-lg shadow-lg max-w-md mx-auto">
       {/* LinkedIn Logo */}
       <div className="flex justify-center mb-6">
-      <img src= "https://content.linkedin.com/content/dam/me/business/en-us/amp/brand-site/v2/bg/LI-Logo.svg.original.svg" alt="LinkedIn Logo" className="w-32" />
-
+        <img src="https://content.linkedin.com/content/dam/me/business/en-us/amp/brand-site/v2/bg/LI-Logo.svg.original.svg" alt="LinkedIn Logo" className="w-32" />
       </div>
-      
+
       {/* Login Form */}
       <h2 className="text-2xl font-semibold text-center mb-6">Sign in</h2>
 
