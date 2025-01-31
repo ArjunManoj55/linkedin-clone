@@ -1,3 +1,5 @@
+import PropTypes from "prop-types";
+
 const LoginForm = ({ email, password, setEmail, setPassword, handleSubmit }) => {
   return (
     <div className="bg-white p-8 rounded-lg shadow-lg max-w-md mx-auto">
@@ -51,6 +53,15 @@ const LoginForm = ({ email, password, setEmail, setPassword, handleSubmit }) => 
       </form>
     </div>
   );
+};
+
+/* 🔹 Define Prop Types */
+LoginForm.propTypes = {
+  email: PropTypes.string.isRequired,
+  password: PropTypes.string.isRequired,
+  setEmail: PropTypes.func.isRequired,
+  setPassword: PropTypes.func.isRequired,
+  handleSubmit: PropTypes.func.isRequired,
 };
 
 export default LoginForm;
