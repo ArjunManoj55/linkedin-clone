@@ -1,25 +1,19 @@
 import { BrowserRouter as Router, Route, Routes, Navigate } from "react-router-dom";
-import { useSelector } from "react-redux";
 import LoginPage from "./pages/LoginPage";
+import SignupPage from "./pages/SignupPage";
 import HomePage from "./pages/HomePage";
-import ProtectedRoute from "./components/ProtectedRoute";
+import { useSelector } from "react-redux";
 
 const App = () => {
-  const { user } = useSelector((state) => state.user); // Get user from Redux state
+  const { user } = useSelector((state) => state.user);
 
   return (
     <Router>
       <Routes>
-        {/* Redirect "/" to "/login" */}
         <Route path="/" element={<Navigate to={user ? "/home" : "/login"} />} />
-
-        {/* Public Routes */}
         <Route path="/login" element={<LoginPage />} />
-
-        {/* Protected Route (Only logged-in users can access) */}
-        <Route element={<ProtectedRoute />}>
-          <Route path="/home" element={<HomePage />} />
-        </Route>
+        <Route path="/signup" element={<SignupPage />} />
+        <Route path="/home" element={user ? <HomePage /> : <Navigate to="/login" />} />
       </Routes>
     </Router>
   );

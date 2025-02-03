@@ -1,21 +1,21 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import { loginUser, registerUser } from "../services/authService";
 
-// Async Login Action
-export const login = createAsyncThunk("user/login", async (userData, { rejectWithValue }) => {
-  try {
-    return await loginUser(userData);
-  } catch (error) {
-    return rejectWithValue(error.response.data);
-  }
-});
-
-// Async Register Action
+// Register User
 export const register = createAsyncThunk("user/register", async (userData, { rejectWithValue }) => {
   try {
     return await registerUser(userData);
   } catch (error) {
-    return rejectWithValue(error.response.data);
+    return rejectWithValue(error.response.data.message);
+  }
+});
+
+// Login User
+export const login = createAsyncThunk("user/login", async (userData, { rejectWithValue }) => {
+  try {
+    return await loginUser(userData);
+  } catch (error) {
+    return rejectWithValue(error.response.data.message);
   }
 });
 
@@ -38,33 +38,13 @@ const userSlice = createSlice({
   },
   extraReducers: (builder) => {
     builder
-      .addCase(login.pending, (state) => {
-        state.isLoading = true;
-        state.error = null;
+      .addCase(register.fulfilled, (state, action) => {
+        alert(action.payload.message);
       })
       .addCase(login.fulfilled, (state, action) => {
-        state.isLoading = false;
         state.user = action.payload.user;
         state.token = action.payload.token;
         localStorage.setItem("token", action.payload.token);
-      })
-      .addCase(login.rejected, (state, action) => {
-        state.isLoading = false;
-        state.error = action.payload.message;
-      })
-      .addCase(register.pending, (state) => {
-        state.isLoading = true;
-        state.error = null;
-      })
-      .addCase(register.fulfilled, (state, action) => {
-        state.isLoading = false;
-        state.user = action.payload.user;
-        state.token = action.payload.token;
-        localStorage.setItem("token", action.payload.token);
-      })
-      .addCase(register.rejected, (state, action) => {
-        state.isLoading = false;
-        state.error = action.payload.message;
       });
   },
 });
