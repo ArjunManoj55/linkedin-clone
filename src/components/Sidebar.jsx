@@ -1,10 +1,16 @@
 import { FaBookmark, FaUsers, FaCalendarAlt, FaUserCircle } from "react-icons/fa";
+import { useNavigate } from "react-router-dom"; // ✅ Import useNavigate
 
 const Sidebar = () => {
+  const navigate = useNavigate(); // ✅ Initialize navigation function
+
   return (
     <aside className="w-1/4 bg-white rounded-lg shadow-md p-4">
       {/* Profile Summary */}
-      <div className="flex flex-col items-center border-b pb-4">
+      <div 
+        className="flex flex-col items-center border-b pb-4 cursor-pointer" 
+        onClick={() => navigate("/profile")} // ✅ Navigate to ProfilePage on click
+      >
         <FaUserCircle className="text-gray-400 text-6xl" />
         <h2 className="text-lg font-semibold mt-2">Arjun Manoj</h2>
         <p className="text-sm text-gray-500">Frontend Developer • India</p>

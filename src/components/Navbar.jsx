@@ -36,7 +36,7 @@ const Navbar = () => {
 
       {/* Right - Navigation Icons */}
       <div className="flex items-center space-x-6 text-gray-600">
-        <div className="flex flex-col items-center">
+        <div className="flex flex-col items-center" onClick={() => navigate("/home")}>
           <FaHome className="text-xl" />
           <span className="text-xs font-semibold">Home</span>
         </div>
@@ -71,6 +71,12 @@ const Navbar = () => {
           {/* Dropdown Menu */}
           {dropdownOpen && (
             <div className="absolute top-10 right-0 bg-white border rounded-lg shadow-lg w-40 text-sm">
+              <button
+                onClick={() => navigate("/profile")}
+                className="block w-full text-left px-4 py-2 hover:bg-gray-100"
+              >
+                Profile
+              </button>
               <button
                 onClick={handleLogout}
                 className="block w-full text-left px-4 py-2 hover:bg-gray-100"
