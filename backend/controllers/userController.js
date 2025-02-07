@@ -1,6 +1,3 @@
-//  getUserProfile() → Fetches user info from MongoDB.
-//  updateUserProfile() → Updates user details (name, bio, profilePic).
-
 import User from "../models/User.js";
 
 // ✅ Get User Profile
@@ -15,15 +12,16 @@ export const getUserProfile = async (req, res) => {
   }
 };
 
-// ✅ Update User Profile
+// ✅ Update User Profile (Supports name, position, location & profilePic)
 export const updateUserProfile = async (req, res) => {
   try {
     const user = await User.findById(req.user.id);
     if (!user) return res.status(404).json({ message: "User not found" });
 
-    // Update user fields if provided
+    // ✅ Update user fields if provided
     user.name = req.body.name || user.name;
-    user.bio = req.body.bio || user.bio;
+    user.position = req.body.position || user.position; // ✅ Added position
+    user.location = req.body.location || user.location; // ✅ Added location
     user.profilePic = req.body.profilePic || user.profilePic;
 
     const updatedUser = await user.save();

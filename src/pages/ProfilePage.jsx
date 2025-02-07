@@ -50,7 +50,7 @@ const ProfilePage = () => {
         {/* Cover Photo */}
         <div className="relative h-40 bg-gray-200">
           {/* ✅ Profile Picture (Left-Aligned) */}
-          <div className="absolute left-6 bottom-[-40px] w-24 h-24 border-4 border-white rounded-full overflow-hidden mt-8">
+          <div className="absolute left-6 bottom-[-40px] w-24 h-24 border-4 border-white rounded-full overflow-hidden mt-24">
             <img
               src={user?.profilePic || "https://via.placeholder.com/150"}
               alt="Profile"
