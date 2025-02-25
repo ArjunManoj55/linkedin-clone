@@ -7,7 +7,7 @@ const ProfilePage = () => {
   const { user } = useSelector((state) => state.user);
   const dispatch = useDispatch();
 
-  // ✅ State for Edit Modal
+  // State for Edit Modal
   const [isEditing, setIsEditing] = useState(false);
   const [formData, setFormData] = useState({
     name: user?.name || "",
@@ -16,12 +16,12 @@ const ProfilePage = () => {
     profilePic: user?.profilePic || "",
   });
 
-  // ✅ Handle Input Change
+  //  Handle Input Change
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
-  // ✅ Handle Profile Picture Upload
+  //  Handle Profile Picture Upload
   const handleFileChange = async (e) => {
     const file = e.target.files[0];
     if (!file) return;
@@ -33,23 +33,23 @@ const ProfilePage = () => {
     reader.readAsDataURL(file);
   };
 
-  // ✅ Handle Form Submit
+  // Handle Form Submit
   const handleSubmit = (e) => {
     e.preventDefault();
-    dispatch(updateProfile(formData)); // ✅ Send updated data to Redux
-    setIsEditing(false); // ✅ Close modal
+    dispatch(updateProfile(formData)); //  Send updated data to Redux
+    setIsEditing(false); 
   };
 
   return (
     <>
-      {/* ✅ Navbar at the top */}
+      
       <Navbar />
 
       {/* Profile Container */}
       <div className="max-w-4xl mx-auto bg-white shadow-md rounded-lg overflow-hidden mt-8">
         {/* Cover Photo */}
         <div className="relative h-40 bg-gray-200">
-          {/* ✅ Profile Picture (Left-Aligned) */}
+          
           <div className="absolute left-6 bottom-[-40px] w-24 h-24 border-4 border-white rounded-full overflow-hidden mt-24">
             <img
               src={user?.profilePic || "https://via.placeholder.com/150"}
@@ -83,7 +83,7 @@ const ProfilePage = () => {
               <button className="border border-gray-400 px-4 py-2 rounded-full font-medium">
                 Mail me
               </button>
-              {/* ✅ Existing "Edit" Button */}
+             
               <button
                 className="border border-blue-600 text-blue-600 px-4 py-2 rounded-full font-medium"
                 onClick={() => setIsEditing(true)}
@@ -98,13 +98,13 @@ const ProfilePage = () => {
         </div>
       </div>
 
-      {/* ✅ Edit Profile Modal */}
+      {/*  Edit Profile Modal */}
       {isEditing && (
         <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50">
           <div className="bg-white p-6 rounded-lg w-96">
             <h2 className="text-xl font-semibold mb-4">Edit Profile</h2>
             <form onSubmit={handleSubmit}>
-              {/* ✅ Profile Picture Upload */}
+              {/*  Profile Picture Upload */}
               <div className="mb-4">
                 <label className="block text-sm font-medium text-gray-700">Profile Picture</label>
                 <input type="file" accept="image/*" onChange={handleFileChange} className="mt-1 block w-full text-sm" />
